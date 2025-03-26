@@ -1,0 +1,44 @@
+/* Контейнер горизонтального меню */
+.horizontal-menu {
+  background-color: #242424;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Список элементов меню */
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start; /* Пункты выравниваются слева */
+  gap: 20px; /* Расстояние между пунктами */
+}
+
+/* Элемент меню */
+.menu-item {
+  display: inline-block;
+}
+
+/* Ссылка меню */
+.menu-link {
+  display: block;
+  padding: 10px 15px;
+  color: #ffffff; /* Белый текст */
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover эффект */
+.menu-link:hover {
+  background-color: #919191; /* Серый фон при наведении */
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+/* Активная ссылка (опционально, если используешь NavLink) */
+.menu-link.active {
+  background-color: #3b82f6;
+}

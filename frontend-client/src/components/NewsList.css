@@ -1,0 +1,106 @@
+.news-list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-list-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.news-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 новости в строке */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.news-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.news-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.news-description {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+.news-list-error {
+  color: #e3342f;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Стили для Paginator (дополняют существующие) */
+.paginator {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.paginator-button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.paginator-button:hover:not(.disabled) {
+  background-color: #e0e0e0;
+}
+
+.paginator-button.active {
+  background-color: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.paginator-button.disabled {
+  background-color: #f0f0f0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .news-row {
+    grid-template-columns: repeat(2, 1fr); /* 2 новости в строке */
+  }
+}
+
+@media (max-width: 480px) {
+  .news-row {
+    grid-template-columns: 1fr; /* 1 новость в строке */
+  }
+}

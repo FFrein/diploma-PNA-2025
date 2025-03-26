@@ -1,0 +1,176 @@
+/* Основные стили для страницы животного */
+.animal-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: "Arial", sans-serif;
+}
+
+/* Загрузка */
+.animal-page-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.animal-page-animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ошибка */
+.animal-page-error {
+  text-align: center;
+  color: #e74c3c;
+  font-size: 18px;
+}
+
+/* Карточка животного */
+.animal-page-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.animal-page-name {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Детали животного */
+.animal-page-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Слайдер изображений */
+.animal-page-image-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.animal-page-image {
+  height: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.animal-page-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animal-page-slider-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.animal-page-slider-btn.prev {
+  left: 10px;
+}
+
+.animal-page-slider-btn.next {
+  right: 10px;
+}
+
+.animal-page-image-counter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* Информация о животном */
+.animal-page-info {
+  max-width: 600px;
+  width: 100%;
+}
+
+.animal-page-section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.animal-page-info-list {
+  font-size: 18px;
+  color: #555;
+}
+
+.animal-page-info-list p {
+  margin-bottom: 15px;
+}
+
+.animal-page-description {
+  margin-top: 30px;
+}
+
+.animal-page-description p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Секция вакцин */
+.animal-page-vaccinations {
+  margin-top: 30px;
+}
+
+.animal-page-vaccination-list {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.animal-page-vaccination-list li {
+  margin-bottom: 10px;
+}
+
+/* Сообщение, если животное не найдено */
+.animal-page-no-animal {
+  text-align: center;
+  font-size: 24px;
+  color: #555;
+  font-weight: bold;
+  margin-top: 50px;
+}

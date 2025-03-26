@@ -1,0 +1,168 @@
+/* Контейнер для всего компонента */
+.animals-catalog-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1200px;
+  min-height: 600px;
+  margin: 0 auto;
+}
+
+/* Контейнер для search bar */
+.search-bar-container {
+  margin-bottom: 20px;
+  padding: 0 60px 0 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Контейнер для полей ввода */
+.search-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Поле ввода */
+.search-input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 14px;
+  min-width: 320px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #363636;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* Кнопка поиска */
+.search-button {
+  background-color: #242424;
+  color: white;
+  font-weight: bold;
+  padding: 32px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  align-self: center;
+}
+
+.search-button:hover {
+  background-color: #919191;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Список животных */
+.animals-list {
+  list-style-type: none;
+  padding: 0;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  max-height: 600px;
+  padding-bottom: 20px;
+}
+
+/* Карточка животного */
+.animal-card {
+  position: relative; /* Для позиционирования иконок */
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.animal-card:hover {
+  transform: scale(1.05);
+}
+
+/* Фон карточки */
+.animal-card-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Элемент списка с животным */
+.animal-item {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Информация о животном */
+.animal-info {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Иконка редактирования (карандаш) */
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.edit-icon:hover {
+  background: rgba(59, 130, 246, 0.8); /* Синий при наведении */
+}
+
+/* Иконка удаления (крестик) */
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.delete-icon:hover {
+  background: rgba(255, 0, 0, 0.8); /* Красный при наведении */
+}
+
+/* Стиль для пагинации */
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}

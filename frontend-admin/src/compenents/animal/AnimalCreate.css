@@ -1,0 +1,121 @@
+/* Контейнер компонента */
+.animal-create-container {
+  max-width: 1200px; /* Увеличиваем ширину для трёх колонок */
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+/* Заголовок */
+.animal-create-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Форма */
+.animal-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Сетка для трёх колонок */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Три равные колонки */
+  gap: 20px;
+}
+
+/* Группа полей */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Поле на всю ширину (для описания) */
+.form-group.full-width {
+  grid-column: 1 / -1; /* Занимает все колонки */
+}
+
+/* Метка */
+.form-group label {
+  font-weight: bold;
+}
+
+/* Поле ввода */
+.form-input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* Текстовая область */
+textarea.form-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Предпросмотр изображения */
+.image-preview {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Кнопка отправки */
+.submit-button {
+  background-color: #242424;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+  grid-column: 1 / -1; /* Кнопка на всю ширину */
+}
+
+.submit-button:hover {
+  background-color: #919191;
+}
+
+/* Сообщения */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

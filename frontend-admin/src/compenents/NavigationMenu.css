@@ -1,0 +1,48 @@
+/* Контейнер навигационного меню */
+.navigation-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Фиксированная ширина меню */
+  height: 100vh; /* Полная высота экрана */
+  background-color: #242424; /* Тёмный фон */
+  padding: 20px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Тень справа */
+}
+
+/* Список элементов меню */
+.nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Расстояние между пунктами */
+}
+
+/* Элемент меню */
+.nav-item {
+  width: 100%;
+}
+
+/* Ссылка меню */
+.nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: #ffffff; /* Белый текст */
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover эффект */
+.nav-link:hover {
+  background-color: #919191; /* Серый фон при наведении */
+  color: #ffffff;
+}
+
+/* Активная ссылка (опционально, если используешь NavLink) */
+.nav-link.active {
+  background-color: #3b82f6; /* Синий фон для активного пункта */
+  color: #ffffff;
+}

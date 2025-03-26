@@ -1,0 +1,171 @@
+/* Контейнер компонента */
+.animal-edit-container {
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Заголовки */
+.animal-edit-container h2,
+.animal-edit-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Форма редактирования */
+.animal-edit-form,
+.additional-images-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.animal-edit-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Четыре равные колонки */
+  gap: 20px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Группа полей */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Метка */
+.form-group label {
+  font-weight: bold;
+}
+
+/* Поле ввода */
+.form-input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+/* Текстовая область */
+textarea.form-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Предпросмотр основного изображения */
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Контейнер существующих изображений */
+.existing-images-container {
+  margin-bottom: 20px;
+}
+
+.existing-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.existing-images::-webkit-scrollbar {
+  height: 8px;
+}
+
+.existing-images::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.existing-images::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.image-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.existing-images img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.delete-image-btn {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: -10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Предпросмотр новых дополнительных изображений */
+.additional-images-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.additional-images-preview img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Кнопка отправки */
+.submit-button {
+  background-color: #242424;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.submit-button:hover {
+  background-color: #919191;
+}
+
+/* Сообщения */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
+}

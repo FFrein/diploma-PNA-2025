@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum role {
+  admin
+  support
+  user
+  guest
+}
+
+enum health {
+  healthy
+  temporaryIllness
+  chronic
+}
+
+enum goodsType {
+  food
+  toilet
+  item
+  medicines
+}
+
+enum animalType {
+  cat
+  dog
+}
+
+enum ageStage {
+  puppy
+  dog
+  kitten
+  cat
+}
+
+enum color {
+  brown
+  black
+  grey
+  white
+  ginger
+}
+
+enum size {
+  small
+  medium
+  large
+}
+
+enum gender {
+  male
+  female
+}
+
+enum status {
+  new
+  saled
+  dead
+}
+
+model TelegramUser {
+  id        Int      @id @default(autoincrement())
+  chatId    String   @unique
+  isNotified Boolean @default(false)
+  createdAt DateTime @default(now())
+  userId Int?   @unique
+  user   User?  @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  role     role
+  FIO      String
+  login    String
+  phone    String
+  email    String    @unique
+  password String
+  review   Review?   @relation("UserReview") // Один пользователь — один отзыв
+  telegram TelegramUser?
+}
+
+model AnimalBreed {
+  id          Int       @id @default(autoincrement())
+  animalType  animalType
+  name        String
+  description String
+  animals     Animal[]  
+}
+
+model Animal {
+  id                   Int          @id @default(autoincrement())
+  name                 String
+  animalType           animalType
+  gender               gender
+  status               status
+  health               health
+  diseasesDescription  String?     
+  age                  Int
+  size                 size
+  color                color
+  foodPerDay           Int
+  toiletPerDay         Int
+  description          String
+  animalBreedId        Int         
+  animalBreed          AnimalBreed  @relation(fields: [animalBreedId], references: [id])
+  sterilized           Boolean 
+  vaccinations         VaccinationAnimal[]
+  animalImages         AnimalImage[]
+}
+
+model AnimalImage {
+  id        Int    @id @default(autoincrement())
+  imageUrl  String
+  animalId  Int   
+  animal    Animal @relation(fields: [animalId], references: [id])
+}
+
+model Vaccination {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  animals     VaccinationAnimal[]
+}
+
+model VaccinationAnimal {
+  id            Int         @id @default(autoincrement())
+  animalId      Int
+  vaccinationId Int
+  animal        Animal      @relation(fields: [animalId], references: [id])
+  vaccination   Vaccination @relation(fields: [vaccinationId], references: [id])
+}
+
+model Review {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @unique // Уникальный ключ для связи 1:1
+  user        User      @relation("UserReview", fields: [userId], references: [id])
+  rating      Int
+  description String
+}
+
+model News {
+  id          Int       @id @default(autoincrement())
+  iamge       String
+  title       String
+  description String
+}
+
+model Goods {
+  id          Int       @id @default(autoincrement())
+  type        goodsType
+  name        String
+  price       Float
+  description String
+}

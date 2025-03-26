@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  frontend-client:
+    build:
+      context: ./frontend-client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend-client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  frontend-admin:
+    build:
+      context: ./frontend-admin
+      dockerfile: Dockerfile
+    ports:
+      - "5174:80"
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend-admin:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://admin:secret@postgres:5432/myapp?schema=public"
+      JWT_ACCESS_SECRET: "JWT_ACCESS_SECRET"
+      JWT_ACCESS_EXPIRES_IN: "3d"
+      JWT_REFRESH_SECRET: "JWT_REFRESH_SECRET"
+      JWT_REFRESH__EXPIRES_IN: "14d"
+      SUPABASE_URL: "https://gmunxderffsdpoclsbjj.supabase.co"
+      SUPABASE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtdW54ZGVyZmZzZHBvY2xzYmpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ2MzE5ODksImV4cCI6MjA1MDIwNzk4OX0.trRHRDMPRbGv3SYgDp9yo7tXMPo2HffuezSHZgj8kqs"
+      TELEGRAM_BOT_TOKEN: "8094384133:AAEqJjMY6GuXs9QX-aa99GXontTtqm_YEww"
+      SITE_URL: "http://frontend-client:5173/animal/"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    command: npm run start
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: myapp
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
