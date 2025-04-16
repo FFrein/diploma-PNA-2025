@@ -1,0 +1,412 @@
+#root 
+  width: 1920px
+  height: 100%
+
+
+  //background-image: url("./public/animals.jpg")
+  //
+  //background-size: cover
+  //background-position: center
+  //background-repeat: no-repeat
+  //background-attachment: fixed
+
+.wrapper 
+  margin: 0 auto
+  text-align: center
+
+.container
+  box-sizing: border-box
+  max-width: 1280px
+  margin: 0 auto
+  text-align: center
+
+.logo 
+  height: 6em
+  padding: 1.5em
+  will-change: filter
+  transition: filter 300ms
+
+
+@keyframes logo-spin 
+  from 
+    transform: rotate(0deg)
+  
+  to 
+    transform: rotate(360deg)
+  
+
+
+@media (prefers-reduced-motion: no-preference) 
+  a:nth-of-type(2) .logo 
+    animation: logo-spin infinite 20s linear
+  
+
+
+//Header
+
+.header 
+  box-sizing: border-box
+  max-width: 1280px
+  margin: 10px auto 10px auto
+  font-family: var(--font-header-family)
+  padding: 10px 40px
+  border-bottom: 2px solid #e0e0e0
+  background-color: #FFFFFF
+  border-radius:60px
+
+.header-nav  
+  max-width: 1280px
+  margin: auto
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+
+.header-nav a 
+  text-decoration: none
+  padding: 10px 20px
+  border-radius: 8px
+  transition: background-color 0.3s, color 0.3s
+  font-weight: 500
+  font-size: 12px
+
+.header-nav a:hover 
+  color: #b8b8b8
+
+.header-nav img 
+  width: 60px
+  height: 60px
+
+
+.header-nav-center 
+  display: flex
+  gap: 20px
+  align-items: center
+
+
+.linkBtn 
+  text-decoration: none
+  font-size: 12px
+  color: #333
+  padding: 10px 10px
+  border-radius: 8px
+  transition: background-color 0.3s, color 0.3s
+
+.authBtn
+  background-color: var(--color-main)
+  color: var(--color-input-dark)
+
+.linkBtn:hover 
+  color: #979797
+
+
+//Home 
+
+.home-image 
+  margin: 16px 0
+  width: 1280px
+  height: 600px
+  object-fit: cover
+  margin-bottom: -150px
+  border-radius: 20px
+
+
+//TakeAnimalNav
+
+.takeAnimalNav 
+  display: flex
+  justify-content: center
+  margin: 20px 0
+
+
+nav 
+  display: flex
+  gap: 20px
+
+
+.animalButton 
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 16px
+  background-color: #ffffff
+  border: 1px solid var(--color-input-dark)
+  border-radius: 16px
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+  transition: transform 0.3s ease
+  text-decoration: none
+  color: inherit
+
+
+.animalButton:hover 
+  transform: scale(1.05)
+
+
+.animalButton img 
+  width: 96px
+  height: 96px
+  object-fit: cover
+  margin-bottom: 8px
+
+
+.animalButton p 
+  font-size: 18px
+  font-weight: 600
+  color: #4a4a4a
+
+
+//AnimalsCatalog
+/* Контейнер для всего компонента */
+.animals-catalog-container 
+  display: flex
+  flex-direction: column
+  padding: 20px
+  max-width: 1200px
+  min-height: 600px
+  margin: 0 auto
+  background-color: #22222218
+  margin: 10px
+  border-radius: 40px
+
+
+/* Контейнер для search bar */
+.search-bar-container 
+  margin-bottom: 20px
+  padding: 0 60px 0 60px
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+
+/* Контейнер для полей ввода */
+.search-inputs 
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 10px
+
+
+/* Поле ввода */
+.search-input 
+  padding: 10px
+  border: 1px solid #d1d5db
+  border-radius: 5px
+  font-size: 14px
+  min-width: 350px
+  width: 100%
+  box-sizing: border-box
+  background-color: #363636
+
+
+.search-input:focus 
+  outline: none
+  border-color: #3b82f6
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5)
+
+
+/* Кнопка поиска */
+.search-button 
+  background-color: #242424
+  color: white
+  font-weight: bold
+  padding: 32px 20px
+  border-radius: 5px
+  cursor: pointer
+  transition: background-color 0.3s, color 0.3s
+  align-self: center /* Центрируем кнопку */
+
+
+.search-button:hover 
+  background-color: #919191
+
+
+/* Сообщение об ошибке */
+.error-message 
+  color: red
+  margin-top: 10px
+  text-align: center
+
+
+/* Список животных */
+.animals-list 
+  list-style-type: none
+  padding: 0
+  margin: auto
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-template-rows: repeat(2, 1fr)
+  gap: 20px
+
+
+/* Элемент списка с животным */
+.animal-item 
+  text-decoration: none
+  display: block
+
+
+/* Карточка животного */
+.animal-card 
+  width: 300px
+  height: 300px
+  background-size: cover
+  background-position: center
+  border-radius: 10px
+  display: flex
+  align-items: flex-end
+  background-color: #222222
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+  transition: transform 0.3s
+
+
+.animal-card:hover 
+  transform: scale(1.05)
+
+
+/* Информация о животном */
+.animal-info 
+  background: rgba(0, 0, 0, 0.6)
+  color: white
+  padding: 10px
+  border-radius: 5px
+  font-size: 14px
+  width: 100%
+
+
+/* Стиль для пагинации */
+.paginator 
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 10px
+  margin: 20px 0
+
+
+//Questions
+
+.section__inner 
+  padding-top: 30px
+  padding-bottom: 30px
+  color: #FFFFFF
+  background-color: #222222
+  border-radius:40px
+
+
+.content-wrapper 
+  padding: 0 15px
+
+
+.FAQ-section 
+  margin-bottom: 30px
+
+
+.section-title 
+  font-size: 24px
+  font-weight: bold
+  margin-bottom: 15px
+
+
+.FAQ-section-question-wrapper 
+  padding: 10px 0
+
+
+.question-block 
+  margin-bottom: 15px
+
+
+.question 
+  font-size: 18px
+
+
+.question:hover 
+  background-color: #e0e0e010
+
+
+.answer 
+  font-size: 16px
+  padding: 10px
+  border-left: 5px solid var(--color-main)
+  margin-top: 10px
+
+
+.answer p 
+  margin: 0
+
+
+//Footer
+footer 
+  background-color: #222222
+  color: #fff
+  padding: 20px 0
+
+
+.footer-container 
+  display: flex
+  justify-content: space-between
+  align-items: center
+  max-width: 1200px
+  margin: auto auto 0 auto
+
+
+.map 
+  width: 60%
+
+
+.contacts 
+  width: 35%
+
+
+.contacts h2 
+  font-size: 24px
+  margin-bottom: 10px
+
+
+.contacts p 
+  font-size: 16px
+  margin: 5px 0
+
+
+//About
+
+.about-page 
+  color: #000
+
+//Paginator
+
+/* Контейнер пагинации */
+.paginator 
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 10px
+  margin: 20px 0 
+
+
+/* Общий стиль кнопок */
+.paginator-button 
+  padding: 8px 12px
+  border: 1px solid #d1d5db 
+  border-radius: 4px
+  background-color: #ffffff 
+  color: #374151 
+  font-size: 14px
+  cursor: pointer
+  transition: background-color 0.3s, color 0.3s
+
+
+/* Hover для активных кнопок */
+.paginator-button:not(.disabled):hover 
+  background-color: #f3f4f6 
+
+
+/* Активная страница */
+.paginator-button.active 
+  background-color: var(--color-main)
+  color: #ffffff 
+  border-color: var(--color-main-shadow)
+
+
+/* Неактивные кнопки (disabled) */
+.paginator-button.disabled 
+  background-color: #e5e7eb 
+  color: #6b7280 
+  cursor: not-allowed
+

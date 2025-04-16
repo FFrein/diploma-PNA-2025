@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react"; // Убираем useState, он больше не нужен
-import "./App.css";
+import "./App.sass";
 import { About } from "./pages/about";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "./components/header";
 import { Auth } from "./pages/auth";
 import { Catalog } from "./pages/catalog";
-import { Questions } from "./pages/questions";
+import { Questions } from "./components/main/questions";
 import { Footer } from "./components/footer";
 import { Home } from "./pages/home";
 import { Animal } from "./pages/animal";

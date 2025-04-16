@@ -13,8 +13,6 @@ const Paginator: React.FC<PaginatorProps> = ({
   totalAnimals,
   pageSize = 3,
 }) => {
-  console.log(currentPage, totalAnimals, pageSize);
-
   const totalPages = Math.ceil(totalAnimals / pageSize);
 
   const getPageNumbers = () => {

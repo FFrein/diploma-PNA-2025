@@ -171,3 +171,17 @@ export class NewsService {
     return $api.get(`/news/${id}`);
   }
 }
+
+export class TransactionsService {
+  static async search(
+    page?: number,
+    pageSize?: number
+  ): Promise<AxiosResponse<any>> {
+    const params = new URLSearchParams();
+
+    if (page) params.append("page", page.toString());
+    if (pageSize) params.append("pageSize", pageSize.toString());
+
+    return $api.get<any>(`/transactions?${params.toString()}`);
+  }
+}

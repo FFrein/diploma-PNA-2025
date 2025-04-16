@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../store/context";
-import "./Registration.css";
+import { Context } from "../../store/context";
+import "./Registration.sass";
 
 export const Registration = () => {
   const [form, setForm] = useState({

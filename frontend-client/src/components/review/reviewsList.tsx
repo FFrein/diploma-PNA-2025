@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ReviewsService } from "../api/services/all.services";
-import Paginator from "./paginator.tsx";
-import "./ReviewsList.css";
+import { ReviewsService } from "../../api/services/all.services.ts";
+import Paginator from "../paginator.tsx";
+import "./ReviewsList.sass";
 
 export const ReviewsList: React.FC = () => {
   const [reviews, setReviews] = useState<any[]>([]);
@@ -37,7 +37,7 @@ export const ReviewsList: React.FC = () => {
   };
 
   return (
-    <div className="reviews-list-container">
+    <div className="reviews-list-container container">
       <h2>Отзывы пользователей</h2>
       {isLoading ? (
         <p>Загрузка...</p>

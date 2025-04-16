@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ReviewsService } from "../api/services/all.services";
+import { ReviewsService } from "../../api/services/all.services";
 import "./ReviewForm.css";
 
 interface ReviewFormProps {

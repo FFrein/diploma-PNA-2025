@@ -3,7 +3,7 @@ import { Context } from "../store/context";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../api/services/auth.service";
 import "./Profile.css";
-import { ReviewForm } from "../components/reviewForm";
+import { ReviewForm } from "../components/review/reviewForm";
 
 export const Profile = () => {
   const { store } = useContext(Context);

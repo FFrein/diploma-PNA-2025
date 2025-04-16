@@ -4,7 +4,7 @@ import telegramLogo from "/public/telegram.png";
 const TelegramBlock = () => {
   return (
     <a href="https://t.me/PetShelterPNA_BOT">
-      <div className="telegram-section">
+      <div className="telegram-section container">
         <img src={telegramLogo} alt="Telegram Logo" className="telegram-logo" />
         <div className="telegram-section-text">
           <h2 className="telegram-text">Мы в Telegram</h2>

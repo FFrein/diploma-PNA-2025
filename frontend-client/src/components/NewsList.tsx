@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NewsService } from "../api/services/all.services"; // Предполагается, что NewsService уже создан
 import Paginator from "./paginator";
-import "./NewsList.css";
+import "./NewsList.sass";
 import { Link } from "react-router-dom";
 
 export const NewsList: React.FC = () => {

@@ -20,11 +20,14 @@ export const Header = observer(() => {
           <Link to="/catalog" className="linkBtn">
             Найти питомца
           </Link>
-          <Link to="/questions" className="linkBtn">
-            Вопросы и ответы
+          <Link to="/donate" className="linkBtn">
+            Отдать животное
           </Link>
           <Link to="/news" className="linkBtn">
             Новости
+          </Link>
+          <Link to="/donate" className="linkBtn">
+            Волонтёрство
           </Link>
           <Link to="/donate" className="linkBtn">
             Пожертвования
@@ -32,11 +35,11 @@ export const Header = observer(() => {
         </div>
 
         {store.isAuth ? (
-          <Link to="profile" className="linkBtn">
+          <Link to="profile" className="linkBtn authBtn">
             Профиль
           </Link>
         ) : (
-          <Link to="/auth" className="linkBtn">
+          <Link to="/auth" className="linkBtn authBtn">
             Войти
           </Link>
         )}

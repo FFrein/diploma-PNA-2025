@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Registration } from "../components/registration";
-import { Authorization } from "../components/authorization";
-import ResetPassword from "../components/forgotPassword";
+import { Registration } from "../components/auth/registration";
+import { Authorization } from "../components/auth/authorization";
+import ResetPassword from "../components/auth/forgotPassword";
 
 export const Auth = () => {
   return (

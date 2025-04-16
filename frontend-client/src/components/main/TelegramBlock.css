@@ -12,6 +12,7 @@
   background-position: right center; /* Изображение справа, центрировано по вертикали */
   background-repeat: no-repeat; /* Не повторять изображение */
   background-size: 600px auto; /* Установите размер изображения (настройте под ваши нужды) */
+  border-radius: 20px;
 }
 
 .telegram-text {

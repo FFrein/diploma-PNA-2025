@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -7,6 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import "./DonationPage.css";
+import { TransactionsService } from "../api/services/all.services";
 
 // Инициализация Stripe с тестовым ключом
 const stripePromise = loadStripe(
@@ -20,6 +21,7 @@ const DonationForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false); // Добавлено состояние загрузки
+  const [transactions, setTransactions] = useState<any>();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -37,7 +39,7 @@ const DonationForm = () => {
     try {
       // Создаём PaymentIntent на сервере
       const response = await fetch(
-        "http://localhost:3000/create-payment-intent",
+        "http://localhost:3000/transactions/create-payment-intent",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -69,6 +71,16 @@ const DonationForm = () => {
     } finally {
       setIsLoading(false); // Конец загрузки
     }
+  };
+
+  useEffect(() => {
+    handleGetTransactions();
+  }, []);
+
+  const handleGetTransactions = async () => {
+    const data = await TransactionsService.search(1, 10);
+    console.log(data);
+    setTransactions(data);
   };
 
   return (

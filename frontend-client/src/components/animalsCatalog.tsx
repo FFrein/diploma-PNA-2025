@@ -62,11 +62,6 @@ export const AnimalsCatalog: React.FC<GetAllAnimalsFormType> = () => {
     handleGetAll(page);
   };
 
-  const handleSearch = () => {
-    setCurrentPage(1); // Сбрасываем на первую страницу при новом поиске
-    handleGetAll(1);
-  };
-
   const handleGetAnimalBreeds = async () => {
     try {
       const resp = await animalBreedService.getAll();
@@ -175,9 +170,6 @@ export const AnimalsCatalog: React.FC<GetAllAnimalsFormType> = () => {
             ))}
           </select>
         </div>
-        <button onClick={handleSearch} className="search-button">
-          Поиск
-        </button>
       </div>
 
       {error && <div className="error-message">{error}</div>}

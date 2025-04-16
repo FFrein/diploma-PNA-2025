@@ -1,0 +1,85 @@
+@use "../../variabels.sass"
+
+/* Стили для всей страницы */
+.authorization-page 
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 10rem 0
+
+
+/* Карточка формы */
+.authorization-card 
+  background-color: #f3f4f6
+  padding: 2rem
+  border-radius: 0.5rem
+  max-width: 28rem
+  width: 100%
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1)
+
+
+/* Заголовок */
+.authorization-title 
+  font-size: 1.875rem
+  font-weight: bold
+  text-align: center
+  color: #1f2937
+  margin-bottom: 1.5rem
+
+
+/* Форма */
+.authorization-form 
+  display: flex
+  flex-direction: column
+  gap: 1rem
+
+
+/* Инпуты */
+.authorization-input 
+  width: 94%
+  padding: 0.75rem
+  border: 1px solid #d1d5db
+  border-radius: 0.375rem
+  outline: none
+  transition: border-color 0.2s, box-shadow 0.2s
+
+
+.authorization-input:focus 
+  border-color: transparent
+  box-shadow: 0 0 0 2px #b8a500
+
+
+.authorization-input::placeholder 
+  color: #9ca3af
+
+
+/* Кнопка */
+.authorization-button 
+  width: 100%
+  background-color: var(--color-main)
+  color: var(--color-input-dark)
+  font-weight: bold
+  padding: 0.75rem 1rem
+  border-radius: 0.375rem
+  border-bottom: 4px solid var(--color-main-shadow)
+  cursor: pointer
+  transition: background-color 0.2s, border-color 0.2s
+
+
+.authorization-button:hover 
+  background-color: var(--color-main-shadow)
+  border-color: var(--color-main-shadow)
+
+
+/* Ссылка */
+.authorization-link 
+  text-align: center
+  color: var(--color-input-dark)
+  text-decoration: none
+  transition: text-decoration 0.2s
+
+
+.authorization-link:hover 
+  color: var(--color-input-dark)
+  text-decoration: underline
+
