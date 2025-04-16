@@ -1,11 +1,7 @@
 .profile-page {
-  color: #333;
-  max-width: 500px;
-  margin: 50px auto;
+  max-width: 600px;
+  margin: 40px auto;
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-form {
@@ -17,51 +13,68 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+  position: relative; /* Для позиционирования кнопки редактирования */
 }
 
 .form-group label {
   font-weight: bold;
-  margin-bottom: 5px;
+  color: #333;
 }
 
 .form-group input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .form-group input:disabled {
   background-color: #f5f5f5;
-  color: #888;
+  color: #666;
+}
+
+.edit-button {
+  position: absolute;
+  right: 03px;
+  top: 70%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.edit-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
 }
 
 .save-button {
+  background-color: #242424;
+  color: white;
   padding: 10px;
-  background-color: #3b82f6;
-  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .save-button:hover {
-  background-color: #2563eb;
+  background-color: #919191;
 }
 
 .logout-button {
-  padding: 10px;
   background-color: #e3342f;
-  color: #fff;
+  color: white;
+  padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .logout-button:hover {
-  background-color: #cc1f1a;
+  background-color: #b91c1c;
 }
 
 .error {
@@ -70,6 +83,6 @@
 }
 
 .success {
-  color: #38a169;
+  color: #2ecc71;
   text-align: center;
 }

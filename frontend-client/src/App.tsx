@@ -20,7 +20,7 @@ function App() {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    store.checkAuth(); // Проверяем авторизацию при монтировании
+    store.checkAuth();
   }, [store]);
 
   return (
@@ -30,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:type" element={<Catalog />} />
           <Route path="/about" element={<About />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/animal/:id" element={<Animal />} />

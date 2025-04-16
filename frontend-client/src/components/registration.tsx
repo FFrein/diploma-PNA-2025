@@ -5,9 +5,7 @@ import "./Registration.css";
 
 export const Registration = () => {
   const [form, setForm] = useState({
-    username: "",
     email: "",
-    phonenumber: "",
     password: "",
   });
   const [error, setError] = useState<string | null>(null); // Добавляем состояние для ошибки
@@ -25,17 +23,12 @@ export const Registration = () => {
 
     try {
       setError(null); // Сбрасываем ошибку перед запросом
-      await store.registration(
-        form.username,
-        form.email,
-        form.password,
-        form.phonenumber
-      );
+      await store.registration(form.email, form.password);
 
       if (store.isAuth) {
         navigate("/gallery");
       } else {
-        alert("Ошибка авторизации");
+        navigate("/auth");
       }
     } catch (error) {
       console.error(error);
@@ -49,22 +42,9 @@ export const Registration = () => {
         <h2 className="registration-title">Регистрация</h2>
         <form onSubmit={handlerSightIn} className="registration-form">
           <input
-            placeholder="Имя пользователя"
-            value={form.username}
-            onChange={(e) => setForm({ ...form, username: e.target.value })}
-            className="registration-input"
-          />
-          <input
             placeholder="Email (name@mail.ru)"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="registration-input"
-          />
-          <input
-            placeholder="Номер телефона"
-            type="tel"
-            value={form.phonenumber}
-            onChange={(e) => setForm({ ...form, phonenumber: e.target.value })}
             className="registration-input"
           />
           <input

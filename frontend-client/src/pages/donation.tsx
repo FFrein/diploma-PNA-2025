@@ -12,22 +12,25 @@ import "./DonationPage.css";
 const stripePromise = loadStripe(
   "pk_test_51R6WNcQo45tGk69HUNEnGyzLp6As3HFgEHL2CSvMYOtqnZO6ubhDStX6Fy7zLoOm6Yk1Glg86m6FNvbOfgW3zrRA0065WSxxgj"
 );
-//4242 4242 4242 4242
-//4000 0000 0000 0002
-//https://stripe.com/docs/testing
+
 const DonationForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [amount, setAmount] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Добавлено состояние загрузки
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setSuccess(null);
+    setIsLoading(true); // Начало загрузки
 
-    if (!stripe || !elements) return;
+    if (!stripe || !elements) {
+      setIsLoading(false);
+      return;
+    }
 
     const cardElement = elements.getElement(CardElement);
 
@@ -38,9 +41,13 @@ const DonationForm = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: amount * 100 }), // Сумма в центах
+          body: JSON.stringify({ amount: amount * 100 }), // Сумма в копейках (RUB)
         }
       );
+
+      if (!response.ok) {
+        throw new Error("Ошибка создания PaymentIntent");
+      }
 
       const { clientSecret } = await response.json();
 
@@ -53,11 +60,14 @@ const DonationForm = () => {
 
       if (result.error) {
         setError(result.error.message || "Ошибка при обработке оплаты");
-      } else if (result.paymentIntent?.status === "succeeded") {
-        setSuccess("Спасибо за ваше пожертвование!");
+      } else {
+        // Успешное подтверждение — сервер обработает через webhook
+        setSuccess("Платёж отправлен! Спасибо за ваше пожертвование.");
       }
     } catch (err: any) {
-      setError("Ошибка: " + err.message);
+      setError(`Ошибка: ${err.message}`);
+    } finally {
+      setIsLoading(false); // Конец загрузки
     }
   };
 
@@ -72,16 +82,24 @@ const DonationForm = () => {
           onChange={(e) => setAmount(Number(e.target.value))}
           min="1"
           className="form-input"
+          disabled={isLoading}
         />
       </div>
       <div className="form-group">
         <label>Данные карты:</label>
-        <CardElement className="card-element" />
+        <CardElement
+          className="card-element"
+          options={{ disabled: isLoading }}
+        />
       </div>
       {error && <div className="error-message">{error}</div>}
       {success && <div className="success-message">{success}</div>}
-      <button type="submit" disabled={!stripe} className="submit-button">
-        Пожертвовать (тест)
+      <button
+        type="submit"
+        disabled={!stripe || isLoading}
+        className="submit-button"
+      >
+        {isLoading ? "Обработка..." : "Пожертвовать (тест)"}
       </button>
     </form>
   );

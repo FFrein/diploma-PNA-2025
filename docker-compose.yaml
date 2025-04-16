@@ -71,6 +71,26 @@ services:
     networks:
       - app-network
 
+  stripe-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile.stripe
+    environment:
+      - STRIPE_API_KEY=sk_test_51R6WNcQo45tGk69HpCOb8dgoPoKltZM9kJkduC2jgsaDH0hzaNlIBXyNO5fUkRuSH6VYDEktkcAIK83MeGW4VIQL00ouw0MjLy
+    volumes:
+      - ~/.stripe:/root/.stripe # Для сохранения конфигурации Stripe CLI после login
+    command:
+      [
+        "stripe",
+        "listen",
+        "--forward-to",
+        "http://host.docker.internal:3000/stripe-webhook",
+      ]
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # Для доступа к хосту
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge

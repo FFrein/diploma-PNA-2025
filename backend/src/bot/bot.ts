@@ -42,11 +42,13 @@ bot.command('start', async (ctx) => {
     }
 
     const helpMessage = `
-      Список команд:
-      /start - Начать работу с ботом
-      /help - Показать список команд
-      /enable_notifications - Включить уведомления
-      /disable_notifications - Выключить уведомления
+  Список команд:
+  /start - Начать работу с ботом
+  /help - Показать список команд
+  /enable_animal_notifications - Включить уведомления о животных
+  /disable_animal_notifications - Выключить уведомления о животных
+  /enable_news_notifications - Включить уведомления новостей
+  /disable_news_notifications - Выключить уведомления новостей
       `;
     await ctx.reply(helpMessage);
   } catch (error) {
@@ -61,14 +63,16 @@ bot.command('help', async (ctx) => {
   Список команд:
   /start - Начать работу с ботом
   /help - Показать список команд
-  /enable_notifications - Включить уведомления
-  /disable_notifications - Выключить уведомления
+  /enable_animal_notifications - Включить уведомления о животных
+  /disable_animal_notifications - Выключить уведомления о животных
+  /enable_news_notifications - Включить уведомления новостей
+  /disable_news_notifications - Выключить уведомления новостей
   `;
   await ctx.reply(helpMessage);
 });
 
 // Команда /enable_notifications
-bot.command('enable_notifications', async (ctx) => {
+bot.command('enable_animal_notifications', async (ctx) => {
   if (!ctx.chat) return;
 
   const chatId = ctx.chat.id.toString();
@@ -76,7 +80,7 @@ bot.command('enable_notifications', async (ctx) => {
   try {
     const user = await prisma.telegramUser.update({
       where: { chatId: chatId },
-      data: { isNotified: true },
+      data: { animalNotified: true },
     });
     await ctx.reply('Уведомления включены!');
   } catch (error) {
@@ -86,7 +90,7 @@ bot.command('enable_notifications', async (ctx) => {
 });
 
 // Команда /disable_notifications
-bot.command('disable_notifications', async (ctx) => {
+bot.command('disable_animal_notifications', async (ctx) => {
   if (!ctx.chat) return;
 
   const chatId = ctx.chat.id.toString();
@@ -94,7 +98,43 @@ bot.command('disable_notifications', async (ctx) => {
   try {
     const user = await prisma.telegramUser.update({
       where: { chatId: chatId },
-      data: { isNotified: false },
+      data: { animalNotified: false },
+    });
+    await ctx.reply('Уведомления выключены!');
+  } catch (error) {
+    console.error('Ошибка при выключении уведомлений:', error);
+    await ctx.reply('Ты ещё не зарегистрирован. Используй /start.');
+  }
+});
+
+// Команда /enable_notifications
+bot.command('enable_news_notifications', async (ctx) => {
+  if (!ctx.chat) return;
+
+  const chatId = ctx.chat.id.toString();
+
+  try {
+    const user = await prisma.telegramUser.update({
+      where: { chatId: chatId },
+      data: { newsNotified: true },
+    });
+    await ctx.reply('Уведомления включены!');
+  } catch (error) {
+    console.error('Ошибка при включении уведомлений:', error);
+    await ctx.reply('Ты ещё не зарегистрирован. Используй /start.');
+  }
+});
+
+// Команда /disable_notifications
+bot.command('disable_news_notifications', async (ctx) => {
+  if (!ctx.chat) return;
+
+  const chatId = ctx.chat.id.toString();
+
+  try {
+    const user = await prisma.telegramUser.update({
+      where: { chatId: chatId },
+      data: { newsNotified: false },
     });
     await ctx.reply('Уведомления выключены!');
   } catch (error) {
@@ -104,7 +144,7 @@ bot.command('disable_notifications', async (ctx) => {
 });
 
 // Функция для рассылки сообщений
-async function sendNotification({
+async function sendAnimalNotification({
   imageUrl,
   link,
   text,
@@ -113,7 +153,7 @@ async function sendNotification({
     console.log(123);
 
     const users = await prisma.telegramUser.findMany({
-      where: { isNotified: true },
+      where: { animalNotified: true },
     });
 
     for (const user of users) {
@@ -133,6 +173,35 @@ async function sendNotification({
   }
 }
 
+// Функция для рассылки сообщений
+async function sendNewsNotification({
+  imageUrl,
+  link,
+  text,
+}: NotificationData): Promise<void> {
+  try {
+    console.log(123);
+
+    const users = await prisma.telegramUser.findMany({
+      where: { newsNotified: true },
+    });
+
+    for (const user of users) {
+      try {
+        const chatId = user.chatId;
+        await bot.telegram.sendPhoto(chatId, imageUrl, {
+          caption: `${text}\n\n[Перейти по ссылке](${link})`,
+          parse_mode: 'Markdown',
+        });
+      } catch (error) {
+        console.error(`Ошибка отправки пользователю ${user.chatId}:`, error);
+      }
+    }
+    console.log('Рассылка завершена.');
+  } catch (error) {
+    console.error('Ошибка при получении пользователей для рассылки:', error);
+  }
+}
 // Запуск бота
 
 bot.launch().then(() => {
@@ -157,4 +226,4 @@ async function shutdown(signal: string) {
 process.once('SIGINT', () => shutdown('SIGINT'));
 process.once('SIGTERM', () => shutdown('SIGTERM'));
 
-export { sendNotification };
+export { sendAnimalNotification, sendNewsNotification };

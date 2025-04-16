@@ -7,7 +7,7 @@ export default class AuthService {
     password: string
   ): Promise<AxiosResponse<any>> {
     return $api
-      .post<any>("user/login", { email, password })
+      .post<any>("auth/login", { email, password, role: "admin" })
       .then((response) => response);
   }
 
@@ -18,7 +18,7 @@ export default class AuthService {
     phonenumber: string
   ): Promise<any> {
     return $api
-      .post<any>("user/registration", {
+      .post<any>("auth/registration", {
         email,
         password,
         username,
@@ -29,7 +29,7 @@ export default class AuthService {
   }
 
   static async logout(): Promise<void> {
-    $api.post<any>("user/logout");
+    $api.post<any>("auth/logout");
   }
 
   static async ban(id: number, ban: number): Promise<any> {

@@ -15,6 +15,7 @@ export const Profile = () => {
     phone: "",
     password: "",
   });
+  const [activeField, setActiveField] = useState<string | null>(null); // Отслеживаем активное поле
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -27,7 +28,7 @@ export const Profile = () => {
       setForm({
         FIO: userData.FIO || "",
         phone: userData.phone || "",
-        password: "", // Пароль оставляем пустым для редактирования
+        password: "",
       });
       setError(null);
     } catch (err: any) {
@@ -39,7 +40,7 @@ export const Profile = () => {
   const handleLogout = async (e: React.MouseEvent) => {
     e.preventDefault();
     try {
-      await store.logout(); // Предполагается, что есть метод logout в store
+      await store.logout();
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -50,18 +51,26 @@ export const Profile = () => {
   // Обновление профиля
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!activeField) return; // Ничего не сохраняем, если поле не выбрано
+
     try {
       const updatedData: any = {};
-      if (form.FIO && form.FIO !== user.FIO) updatedData.FIO = form.FIO;
-      if (form.phone && form.phone !== user.phone)
+      if (activeField === "FIO" && form.FIO !== user.FIO)
+        updatedData.FIO = form.FIO;
+      if (activeField === "phone" && form.phone !== user.phone)
         updatedData.phone = form.phone;
-      if (form.password) updatedData.password = form.password; // Отправляем пароль только если он заполнен
+      if (activeField === "password" && form.password)
+        updatedData.password = form.password;
 
       if (Object.keys(updatedData).length > 0) {
-        await AuthService.updateProfile(updatedData); // Предполагаемый метод для обновления
-        await handleProfile(); // Перезагружаем данные после обновления
-        setSuccess("Профиль успешно обновлен");
+        await AuthService.updateProfile(updatedData);
+        await handleProfile(); // Обновляем данные после сохранения
+        setSuccess(`Поле ${activeField} успешно обновлено`);
         setError(null);
+        setActiveField(null); // Сбрасываем активное поле после сохранения
+      } else {
+        setSuccess("Изменений не было");
+        setActiveField(null);
       }
     } catch (err: any) {
       setError("Ошибка при сохранении: " + err.message);
@@ -90,31 +99,72 @@ export const Profile = () => {
               <input
                 type="text"
                 value={form.FIO}
-                onChange={(e) => setForm({ ...form, FIO: e.target.value })}
+                onChange={(e) =>
+                  activeField === "FIO" &&
+                  setForm({ ...form, FIO: e.target.value })
+                }
                 placeholder="Введите ФИО"
+                disabled={activeField !== "FIO" && activeField !== null}
               />
+              <button
+                type="button"
+                className="edit-button"
+                onClick={() => setActiveField("FIO")}
+                disabled={activeField === "FIO" || activeField !== null}
+              >
+                ✏️
+              </button>
             </div>
             <div className="form-group">
               <label>Номер телефона:</label>
               <input
                 type="tel"
                 value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                onChange={(e) =>
+                  activeField === "phone" &&
+                  setForm({
+                    ...form,
+                    phone: Number(e.target.value) ? e.target.value : "",
+                  })
+                }
                 placeholder="Введите номер телефона"
+                disabled={activeField !== "phone" && activeField !== null}
               />
+              <button
+                type="button"
+                className="edit-button"
+                onClick={() => setActiveField("phone")}
+                disabled={activeField === "phone" || activeField !== null}
+              >
+                ✏️
+              </button>
             </div>
             <div className="form-group">
               <label>Новый пароль:</label>
               <input
                 type="password"
                 value={form.password}
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-                placeholder="Введите новый пароль (если хотите изменить)"
+                onChange={(e) =>
+                  activeField === "password" &&
+                  setForm({ ...form, password: e.target.value })
+                }
+                placeholder="Введите новый пароль"
+                disabled={activeField !== "password" && activeField !== null}
               />
+              <button
+                type="button"
+                className="edit-button"
+                onClick={() => setActiveField("password")}
+                disabled={activeField === "password" || activeField !== null}
+              >
+                ✏️
+              </button>
             </div>
-            <button type="submit" className="save-button">
-              Сохранить
-            </button>
+            {activeField && (
+              <button type="submit" className="save-button">
+                Сохранить
+              </button>
+            )}
             <button
               type="button"
               onClick={handleLogout}
@@ -131,3 +181,5 @@ export const Profile = () => {
     </div>
   );
 };
+
+export default Profile;

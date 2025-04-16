@@ -26,10 +26,10 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Router>
         <div>
-          <div>{isAuth ? <></> : <NavigationMenu />}</div>
-          <div style={{ marginLeft: "250px" }}>
+          <div>{!isAuth ? <></> : <NavigationMenu />}</div>
+          <div style={!isAuth ? {} : { marginLeft: "250px" }}>
             <Routes>
-              {isAuth ? (
+              {!isAuth ? (
                 <>
                   <Route path={"*"} element={<Login />}></Route>
                 </>

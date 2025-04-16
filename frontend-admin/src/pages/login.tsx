@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/context";
+import "./Login.css"; // Подключаем файл стилей
 
 export const Login = () => {
   const [form, setForm] = useState({
-    username: "",
     email: "",
-    phonenumber: "",
     password: "",
   });
   const { store } = useContext(Context);
@@ -16,43 +15,44 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      await store.registration(
-        form.username,
-        form.email,
-        form.password,
-        form.phonenumber
-      );
+      await store.login(form.email, form.password);
 
       if (store.isAuth) {
         navigate("/gallery");
       } else {
-        alert("Ошибка авторищзации");
+        alert("Ошибка авторизации");
       }
     } catch (error) {
       console.error(error);
-      alert("Ошибка авторищзации");
+      alert("Ошибка авторизации");
     }
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handlerSightIn} className="">
-          <input
-            placeholder="email"
-            value={form.email}
-            onChange={(e) => {
-              setForm({ ...form, email: e.target.value });
-            }}
-          />
-          <input
-            placeholder="password"
-            value={form.password}
-            onChange={(e) => {
-              setForm({ ...form, password: e.target.value });
-            }}
-          />
-          <button type="submit" className="">
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Вход</h2>
+        <form onSubmit={handlerSightIn} className="login-form">
+          <div className="form-group">
+            <input
+              placeholder="Email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              className="form-input"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              placeholder="Пароль"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              className="form-input"
+              type="password"
+              required
+            />
+          </div>
+          <button type="submit" className="login-button">
             Войти
           </button>
         </form>
@@ -60,3 +60,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

@@ -15,10 +15,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(email: string, pass: string) {
+  async signIn(email: string, pass: string, role: string = 'user') {
     const user = await this.usersService.findByEmail(email);
 
     if (!user || !(await bcrypt.compare(pass, user.password))) {
+      throw new UnauthorizedException();
+    }
+
+    if (role == 'admin' && user.role != 'admin') {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, email: user.email };
@@ -39,7 +43,6 @@ export class AuthService {
   async create(data: {
     role: 'user';
     FIO: string;
-    login: string;
     phone: string;
     email: string;
     password: string;

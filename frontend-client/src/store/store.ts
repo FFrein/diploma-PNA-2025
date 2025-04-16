@@ -37,28 +37,17 @@ export default class Store {
     }
   }
 
-  async registration(
-    username: string,
-    email: string,
-    password: string,
-    phonenumber: string
-  ) {
+  async registration(email: string, password: string) {
     try {
-      const resp = await AuthService.registration(
-        email,
-        password,
-        username,
-        phonenumber,
-        "FIO"
-      );
+      const resp = await AuthService.registration(email, password, "FIO", "0");
       if (resp.status !== 200 && resp.status !== 201) {
         console.log(resp);
         throw new Error(resp.response.data.error || "Registration failed");
       }
       localStorage.setItem("access_token", resp.data.access_token);
 
-      this.setAuth(true);
-      this.setUser(resp.data.user);
+      //this.setAuth(true);
+      //this.setUser(resp.data.user);
       toast.success("Регистрация прошла успешно!");
     } catch (e: any) {
       console.error(e.message);

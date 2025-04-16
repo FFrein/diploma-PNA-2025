@@ -1,0 +1,11 @@
+.news {
+  position: relative;
+}
+
+.news-animals-bg {
+  bottom: 0;
+  right: -800px;
+  width: 1000px;
+  position: absolute;
+  z-index: -10;
+}

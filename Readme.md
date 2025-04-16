@@ -99,3 +99,11 @@ Enum
 Роль(админ\саппорт\пользователь\гость)
 СтадияВозраста(щенок, собака, котёнок, кот)
 Цвет
+
+Stripe CLI
+
+Авторизуйтесь в Stripe CLI:
+bash
+docker exec -it <stripe-cli-container-name> stripe login
+
+Замените <stripe-cli-container-name> на имя контейнера (например, your_project_stripe-cli_1).

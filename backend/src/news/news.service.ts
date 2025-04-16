@@ -21,7 +21,7 @@ export class NewsService {
       }),
       this.prisma.news.count(),
     ]);
-    //asd
+
     return {
       news,
       totalNews,

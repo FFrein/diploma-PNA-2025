@@ -15,7 +15,7 @@ import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { ApiConsumes } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { sendNotification } from 'src/bot/bot';
+import { sendNewsNotification } from 'src/bot/bot';
 import FileService from 'src/utils/file.service';
 
 @Controller('news')
@@ -32,10 +32,10 @@ export class NewsController {
     const fs = new FileService();
     const imageUrl = await fs.uploadFile(file);
 
-    await sendNotification({
+    await sendNewsNotification({
       imageUrl: imageUrl,
       link: 'https://www.youtube.com/watch?v=Onn38VeEAC8&t=2s', //process.env.SITE_URL || 'http://localhost:5173/animal/' + animal.id,
-      text: 'Привет! Вот тебе интересное предложение!',
+      text: 'Новости!',
     });
 
     return this.newsService.create({ ...createNewsDto, iamge: imageUrl });

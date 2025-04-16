@@ -1,0 +1,19 @@
+# Базовый образ с минимальной Linux-системой
+FROM alpine:latest
+
+# Устанавливаем зависимости для работы Stripe CLI
+RUN apk add --no-cache bash curl
+
+# Скачиваем последнюю версию Stripe CLI для Linux
+# Замените версию на актуальную с https://github.com/stripe/stripe-cli/releases
+ARG STRIPE_CLI_VERSION=1.26.1
+RUN curl -L "https://github.com/stripe/stripe-cli/releases/download/v${STRIPE_CLI_VERSION}/stripe_${STRIPE_CLI_VERSION}_linux_x86_64.tar.gz" -o stripe.tar.gz \
+    && tar -xzf stripe.tar.gz \
+    && mv stripe /usr/local/bin/stripe \
+    && rm stripe.tar.gz
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Запускаем Stripe CLI с командой listen
+CMD ["stripe", "listen", "--forward-to", "http://host.docker.internal:3000/stripe-webhook"]

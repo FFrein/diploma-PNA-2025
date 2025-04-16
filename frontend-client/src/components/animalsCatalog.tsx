@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Paginator from "./paginator";
 import {
   AnimalsService,
@@ -9,6 +9,8 @@ import {
 type GetAllAnimalsFormType = {};
 
 export const AnimalsCatalog: React.FC<GetAllAnimalsFormType> = () => {
+  const { type } = useParams<{ type: string }>();
+
   const [animals, setAnimals] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +19,9 @@ export const AnimalsCatalog: React.FC<GetAllAnimalsFormType> = () => {
   const [animalBreeds, setAnimalBreeds] = useState<any[]>([]);
 
   // Состояния для параметров поиска
-  const [animalType, setAnimalType] = useState<string | undefined>(undefined);
+  const [animalType, setAnimalType] = useState<string | undefined>(
+    type || undefined
+  );
   const [health, setHealth] = useState<string | undefined>(undefined);
   const [size, setSize] = useState<string | undefined>(undefined);
   const [color, setColor] = useState<string | undefined>(undefined);
@@ -75,6 +79,7 @@ export const AnimalsCatalog: React.FC<GetAllAnimalsFormType> = () => {
 
   useEffect(() => {
     handleGetAll();
+    setCurrentPage(1);
   }, [animalBreedId, age, size, color, health, animalType]);
 
   useEffect(() => {

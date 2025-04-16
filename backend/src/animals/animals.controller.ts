@@ -18,7 +18,7 @@ import FileService from '../utils/file.service.js';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
 import { ApiConsumes } from '@nestjs/swagger';
 import { AnimalImagesService } from 'src/animal-images/animal-images.service';
-import { sendNotification } from '../bot/bot';
+import { sendAnimalNotification } from '../bot/bot';
 
 @Controller('animals')
 export class AnimalsController {
@@ -57,7 +57,7 @@ export class AnimalsController {
       imageUrl: imageUrl,
     });
 
-    await sendNotification({
+    await sendAnimalNotification({
       imageUrl: imageUrl,
       link: 'https://www.youtube.com/watch?v=Onn38VeEAC8&t=2s', //process.env.SITE_URL || 'http://localhost:5173/animal/' + animal.id,
       text: 'Привет! Вот тебе интересное предложение!',

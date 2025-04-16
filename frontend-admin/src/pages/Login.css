@@ -1,0 +1,106 @@
+/* Контейнер всей страницы */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* Светло-серый фон */
+}
+
+/* Карточка формы */
+.login-card {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Заголовок */
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Форма */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Группа полей */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Поля ввода */
+.form-input {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Синий акцент */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+.form-input::placeholder {
+  color: #9ca3af; /* Серый цвет placeholder */
+}
+
+/* Кнопка */
+.login-button {
+  background-color: #242424; /* Тёмный фон кнопки */
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #919191; /* Серый при наведении */
+}
+
+.login-button:active {
+  background-color: #1a1a1a; /* Ещё темнее при нажатии */
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px;
+    max-width: 300px;
+    margin: 20px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .form-input {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}

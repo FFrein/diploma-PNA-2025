@@ -27,7 +27,9 @@ export default class Store {
   async login(email: string, password: string) {
     try {
       const resp = await AuthService.login(email, password);
-      localStorage.setItem("accessToken", resp.data.accessToken);
+      console.log(resp.data);
+      localStorage.setItem("access_token", resp.data.access_token);
+      localStorage.setItem("refresh_token", resp.data.refresh_token);
       this.setAuth(true);
       this.setUser(resp.data.user);
     } catch (e: any) {
@@ -52,7 +54,7 @@ export default class Store {
         console.log(resp);
         throw new Error(resp.response.data.error || "Registration failed");
       }
-      localStorage.setItem("accessToken", resp.data.accessToken);
+      localStorage.setItem("access_token", resp.data.access_token);
 
       this.setAuth(true);
       this.setUser(resp.data.user);
@@ -66,8 +68,9 @@ export default class Store {
   async logout() {
     this.setLoading(true);
     try {
-      await AuthService.logout();
-      localStorage.removeItem("accessToken");
+      //await AuthService.logout();
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
       this.setAuth(false);
       this.setUser({} as any);
     } catch (e: any) {
@@ -80,12 +83,18 @@ export default class Store {
   async checkAuth() {
     this.setLoading(true);
     try {
-      const resp = await $api.get<any>(`user/refresh`, {
-        withCredentials: true,
-      });
-
-      if (resp.data.accessToken) {
-        localStorage.setItem("accessToken", resp.data.accessToken);
+      console.log(localStorage.getItem("refresh_token"));
+      const resp = await $api.post<any>(
+        `auth/refresh`,
+        { refresh_token: localStorage.getItem("refresh_token") },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(resp.data);
+      if (resp.data.access_token) {
+        localStorage.setItem("access_token", resp.data.access_token);
+        localStorage.setItem("refresh_token", resp.data.refresh_token);
         this.setAuth(true);
         this.setUser(resp.data.user);
       } else {

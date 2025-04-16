@@ -4,9 +4,18 @@ import { GlobalExceptionFilter } from './http-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 //import './bot/bot';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(
+    bodyParser.json({
+      verify: (req: any, res, buf) => {
+        req.rawBody = buf.toString();
+      },
+    }),
+  );
 
   app.useGlobalFilters(new GlobalExceptionFilter());
 

@@ -14,17 +14,15 @@ export default class AuthService {
   static async registration(
     email: string,
     password: string,
-    login: string,
-    phone: string,
-    FIO: string
+    FIO: string,
+    phone: string
   ): Promise<any> {
     return $api
       .post<any>("auth/registration", {
         email,
         password,
-        login,
-        phone,
         FIO: FIO || "FIO",
+        phone: phone || "000",
       })
       .then((response) => response)
       .catch((response) => response);
