@@ -14,6 +14,8 @@ import { VaccinationAnimalModule } from './vaccination-animal/vaccination-animal
 import { VactinationModule } from './vactination/vactination.module';
 import { AnimalImagesModule } from './animal-images/animal-images.module';
 import { NewsModule } from './news/news.module';
+import { TransactionsService } from './transactions/transactions.service';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
@@ -29,8 +31,9 @@ import { NewsModule } from './news/news.module';
     TelegramNotificationModule,
     AnimalImagesModule,
     NewsModule,
+    TransactionsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, VactinationService],
+  providers: [AppService, VactinationService, TransactionsService],
 })
 export class AppModule {}

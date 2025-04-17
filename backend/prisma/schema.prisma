@@ -164,3 +164,9 @@ model Goods {
   price       Float
   description String
 }
+
+model Transactions {
+  id          Int       @id @default(autoincrement())
+  amount      Float
+  date        String
+}

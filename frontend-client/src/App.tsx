@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"; // Убираем useState, он 
 import "./App.sass";
 import { About } from "./pages/about";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Header } from "./components/header";
+import { Header } from "./components/header/header";
 import { Auth } from "./pages/auth";
 import { Catalog } from "./pages/catalog";
 import { Questions } from "./components/main/questions";

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Paginator from "./paginator";
+import Paginator from "../paginator";
 import {
   AnimalsService,
   animalBreedService,
-} from "../api/services/all.services";
+} from "../../api/services/all.services";
+
+import "./Catalog.sass";
 
 type GetAllAnimalsFormType = {};
 

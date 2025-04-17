@@ -1,7 +1,7 @@
 import ReviewsList from "../components/review/reviewsList";
 import { TakeAnimalNav } from "../components/main/takeAnimalNav";
 import TelegramBlock from "../components/main/telegram";
-import { Questions } from "../components/main/questions";
+import Accordion from "../components/accordion/Accordion";
 
 export const Home = () => {
   return (
@@ -9,7 +9,7 @@ export const Home = () => {
       <img src="/public/mainPage.jpg" alt="Кот" className="home-image" />
       <TakeAnimalNav />
       <TelegramBlock />
-      <Questions />
+      <Accordion />
       <ReviewsList />
     </div>
   );

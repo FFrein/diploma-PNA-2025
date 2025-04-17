@@ -1,0 +1,123 @@
+//AnimalsCatalog
+/* Контейнер для всего компонента */
+.animals-catalog-container 
+  display: flex
+  flex-direction: column
+  padding: 20px
+  min-height: 600px
+  margin: 0 auto
+  background-color: #22222218
+  margin: 10px
+  border-radius: 40px
+
+
+/* Контейнер для search bar */
+.search-bar-container 
+  margin-bottom: 20px
+  padding: 0 60px 0 60px
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+
+/* Контейнер для полей ввода */
+.search-inputs 
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  gap: 10px
+
+
+/* Поле ввода */
+.search-input 
+  padding: 10px
+  border: 1px solid #d1d5db
+  border-radius: 5px
+  font-size: 14px
+  min-width: 350px
+  width: 100%
+  box-sizing: border-box
+  background-color: #222222
+
+
+.search-input:focus 
+  outline: none
+  border-color: #3b82f6
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5)
+
+
+/* Кнопка поиска */
+.search-button 
+  background-color: #242424
+  color: white
+  font-weight: bold
+  padding: 32px 20px
+  border-radius: 5px
+  cursor: pointer
+  transition: background-color 0.3s, color 0.3s
+  align-self: center /* Центрируем кнопку */
+
+
+.search-button:hover 
+  background-color: #919191
+
+
+/* Сообщение об ошибке */
+.error-message 
+  color: red
+  margin-top: 10px
+  text-align: center
+
+
+/* Список животных */
+.animals-list 
+  list-style-type: none
+  padding: 0
+  margin: auto
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-template-rows: repeat(2, 1fr)
+  gap: 20px
+
+
+/* Элемент списка с животным */
+.animal-item 
+  text-decoration: none
+  display: block
+
+
+/* Карточка животного */
+.animal-card 
+  width: 300px
+  height: 300px
+  background-size: cover
+  background-position: center
+  border-radius: 10px
+  display: flex
+  align-items: flex-end
+  background-color: #222222
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+  transition: transform 0.3s
+
+
+.animal-card:hover 
+  transform: scale(1.05)
+
+
+/* Информация о животном */
+.animal-info 
+  background: rgba(0, 0, 0, 0.6)
+  color: white
+  padding: 10px
+  border-radius: 5px
+  font-size: 14px
+  width: 100%
+
+
+/* Стиль для пагинации */
+.paginator 
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 10px
+  margin: 20px 0
+

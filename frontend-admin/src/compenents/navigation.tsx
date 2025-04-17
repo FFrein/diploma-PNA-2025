@@ -22,6 +22,11 @@ export const NavigationMenu: React.FC = () => {
     <nav className="navigation-menu">
       <ul className="nav-list">
         <li className="nav-item">
+          <Link to="/statistic" className="nav-link">
+            Статистика
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/animals" className="nav-link">
             Животные
           </Link>

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
-import { Context } from "../store/context";
+import { Context } from "../../store/context";
+import "./header.sass";
 
 export const Header = observer(() => {
   const { store } = useContext(Context);
@@ -21,7 +22,7 @@ export const Header = observer(() => {
             Найти питомца
           </Link>
           <Link to="/donate" className="linkBtn">
-            Отдать животное
+            Отдать питомца
           </Link>
           <Link to="/news" className="linkBtn">
             Новости

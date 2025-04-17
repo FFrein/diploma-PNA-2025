@@ -1,12 +1,13 @@
-.reviews-list-container 
+.transactions-container
+  font-family: var(--font-paragraph-family)
+  width: 100%
   margin: 40px auto
   padding: 20px
   background-color: #f9f9f9
   border-radius: 20px
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
 
-
-.reviews-list-container h2 
+.transactions-container h2
   font-family: var(--font-header-family)
   font-size: var(--font-h2-size-d)
   font-weight: var(--font-h2-weight)
@@ -14,69 +15,38 @@
   margin-bottom: 20px
   text-align: center
 
-
-.reviews-list 
+.transactions-list
   list-style: none
   padding: 0
 
-
-.review-item 
+.transaction-item
   padding: 15px
   border-bottom: 1px solid #ddd
-
-
-.review-item:last-child 
-  border-bottom: none
-
-
-.review-header 
-  display: flex
-  justify-content: space-between
-  align-items: center
-  margin-bottom: 10px
-
-
-.review-user 
-  font-size: 18px
-  font-weight: bold
-  color: #333
-
-
-.review-stars 
-  display: flex
-  gap: 2px
-
-
-.review-star 
-  font-size: 20px
-  color: #ccc /* Серый для незакрашенных звёзд */
-
-
-.review-star.filled 
-  color: #f1c40f /* Жёлтый для закрашенных звёзд */
-
-
-.review-description 
   font-size: 16px
   color: #555
-  line-height: 1.5
+  display: flex
+  justify-content: space-between
 
+.transaction-amount
+  font-weight: bold
+  color: #2ecc71
 
-.reviews-list-error 
+.transaction-date
+  font-style: italic
+  color: #888
+
+.transactions-error
   color: #e3342f
   font-size: 16px
   text-align: center
 
-
-/* Стили для Paginator (дополняют существующие) */
-.paginator 
+.paginator
   display: flex
   justify-content: center
   gap: 10px
   margin-top: 20px
 
-
-.paginator-button 
+.paginator-button
   padding: 8px 12px
   border: 1px solid #ccc
   border-radius: 4px
@@ -86,19 +56,15 @@
   color: #333
   transition: background-color 0.2s
 
-
-.paginator-button:hover:not(.disabled) 
+.paginator-button:hover:not(.disabled)
   background-color: #e0e0e0
 
-
-.paginator-button.active 
+.paginator-button.active
   background-color: var(--color-main)
   color: var(--color-input-dark)
   border-color: var(--color-main-shadow)
 
-
-.paginator-button.disabled 
+.paginator-button.disabled
   background-color: #f0f0f0
   color: #999
   cursor: not-allowed
-
