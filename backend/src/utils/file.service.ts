@@ -1,7 +1,13 @@
-import { createClient } from '@supabase/supabase-js';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
+
+let _createClient;
+
+if (Number(process.env.SUPABASE_ACTIVE) === 1) {
+  const { createClient } = require('@supabase/supabase-js');
+  _createClient = createClient;
+}
 
 export default class FileService {
   supabaseClient;
@@ -18,13 +24,19 @@ export default class FileService {
       throw new Error('Supabase credentials are missing');
     }
 
-    this.supabaseClient = createClient(supabaseUrl, supabaseKey);
+    if (Number(process.env.SUPABASE_ACTIVE) !== 1 && _createClient) {
+      return;
+    }
+    this.supabaseClient = _createClient(supabaseUrl, supabaseKey);
   }
 
   async uploadFile(file) {
     try {
       const bucketName = 'images'; // имя бакета в Supabase
       const filePath = `${Date.now()}_${file.originalname}`; // Генерируем уникальный путь
+
+      if (!this.supabaseClient)
+        throw new Error('Supabase credentials are missing');
 
       // Загружаем файл в Supabase
       const { error } = await this.supabaseClient.storage

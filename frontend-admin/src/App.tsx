@@ -23,7 +23,7 @@ function App() {
   }, [store.isAuth]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       <Router>
         <div>
           <div>{!isAuth ? <></> : <NavigationMenu />}</div>

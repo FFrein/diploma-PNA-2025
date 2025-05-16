@@ -8,7 +8,6 @@ import { GoodsModule } from './goods/goods.module';
 import { AuthModule } from './guards/auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { VactinationService } from './vactination/vactination.service';
-import { TelegramNotificationModule } from './telegram-notification/telegram-notification.module';
 import { AnimalBreedModule } from './animal-breed/animal-breed.module';
 import { VaccinationAnimalModule } from './vaccination-animal/vaccination-animal.module';
 import { VactinationModule } from './vactination/vactination.module';
@@ -28,7 +27,6 @@ import { TransactionsModule } from './transactions/transactions.module';
     VactinationModule,
     VaccinationAnimalModule,
     AnimalBreedModule,
-    TelegramNotificationModule,
     AnimalImagesModule,
     NewsModule,
     TransactionsModule,

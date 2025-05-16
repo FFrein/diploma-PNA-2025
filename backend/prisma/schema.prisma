@@ -26,13 +26,6 @@ enum health {
   chronic
 }
 
-enum goodsType {
-  food
-  toilet
-  item
-  medicines
-}
-
 enum animalType {
   cat
   dog
@@ -131,6 +124,7 @@ model Vaccination {
   id          Int       @id @default(autoincrement())
   name        String
   description String
+  animalType  animalType
   animals     VaccinationAnimal[]
 }
 
@@ -154,14 +148,6 @@ model News {
   id          Int       @id @default(autoincrement())
   iamge       String
   title       String
-  description String
-}
-
-model Goods {
-  id          Int       @id @default(autoincrement())
-  type        goodsType
-  name        String
-  price       Float
   description String
 }
 

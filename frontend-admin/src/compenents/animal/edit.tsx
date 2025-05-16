@@ -473,9 +473,11 @@ export const AnimalEdit: React.FC = () => {
                   );
                   return (
                     <li key={vac.id} className="vaccination-item">
-                      {vaccinationDetails
-                        ? vaccinationDetails.name
-                        : `Вакцина ID: ${vac.vaccinationId}`}
+                      {vaccinationDetails ? (
+                        <p>{vaccinationDetails.name}</p>
+                      ) : (
+                        `Вакцина ID: ${vac.vaccinationId}`
+                      )}
                       <button
                         className="delete-vaccination-btn"
                         onClick={() =>
