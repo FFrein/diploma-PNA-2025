@@ -1,5 +1,5 @@
 import "./TelegramBlock.css";
-import telegramLogo from "/public/telegram.png";
+import telegramLogo from "/telegram.png";
 
 const TelegramBlock = () => {
   return (

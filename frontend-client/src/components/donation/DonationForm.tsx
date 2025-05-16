@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
+import "./Transaction.sass";
 
 export const DonationForm = () => {
   const stripe = useStripe();
@@ -28,7 +29,7 @@ export const DonationForm = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: amount * 100 }), // Сумма в копейках (RUB)
+          body: JSON.stringify({ amount: amount * 100 }),
         }
       );
 

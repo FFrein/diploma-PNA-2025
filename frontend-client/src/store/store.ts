@@ -74,6 +74,7 @@ export default class Store {
     this.setLoading(true);
     try {
       console.log(localStorage.getItem("refresh_token"));
+
       const resp = await $api.post<any>(
         `auth/refresh`,
         { refresh_token: localStorage.getItem("refresh_token") },
@@ -81,7 +82,9 @@ export default class Store {
           withCredentials: true,
         }
       );
+
       console.log(resp.data);
+
       if (resp.data.access_token) {
         localStorage.setItem("access_token", resp.data.access_token);
         localStorage.setItem("refresh_token", resp.data.refresh_token);
@@ -91,7 +94,8 @@ export default class Store {
         this.setAuth(false);
       }
     } catch (e: any) {
-      //console.log(e.response?.data?.message);
+      this.setAuth(false);
+      localStorage.clear();
     } finally {
       this.setLoading(false);
     }

@@ -38,6 +38,7 @@
   height: 300px
   border-radius: 5px
   object-fit: cover
+  margin: auto
 
 
 .news-title 
@@ -95,14 +96,12 @@
 
 
 /* Адаптивность */
-@media (max-width: 768px) 
+@media (max-width: 1280px) 
   .news-row 
-    grid-template-columns: repeat(2, 1fr) /* 2 новости в строке */
-  
+    grid-template-columns: repeat(1, 1fr) 
+  .news-row:has(.news-item:only-child)
+    justify-items: center
 
 
-@media (max-width: 480px) 
-  .news-row 
-    grid-template-columns: 1fr /* 1 новость в строке */
-  
+
 

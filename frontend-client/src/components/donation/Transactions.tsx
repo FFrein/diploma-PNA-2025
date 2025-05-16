@@ -46,7 +46,9 @@ export const TransactionsList: React.FC = () => {
           <ul className="transactions-list">
             {transactions.map((txn) => (
               <li key={txn.id} className="transaction-item">
-                <div className="transaction-amount">Сумма: {txn.amount} ₽</div>
+                <div className="transaction-amount">
+                  Сумма: {txn.amount / 100} ₽
+                </div>
                 <div className="transaction-date">Дата: {txn.date}</div>
               </li>
             ))}

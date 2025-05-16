@@ -102,18 +102,20 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ userId }) => {
           {success && <div className="review-form-success">{success}</div>}
           {existingReview && !isEditing ? (
             <div className="review-form-existing">
-              <h3>Ваш отзыв</h3>
-              <div className="review-form-stars">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className={`review-form-star ${
-                      star <= existingReview.rating ? "filled" : ""
-                    }`}
-                  >
-                    ★
-                  </span>
-                ))}
+              <div className="review-form-stars-form">
+                <h3>Ваш отзыв</h3>
+                <div className="review-form-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      className={`review-form-star ${
+                        star <= existingReview.rating ? "filled" : ""
+                      }`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
               </div>
               <p>
                 <strong>Описание:</strong> {existingReview.description}
@@ -128,21 +130,23 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ userId }) => {
                 {existingReview ? "Редактировать отзыв" : "Оставить отзыв"}
               </h3>
               <div className="review-form-group">
-                <label>Рейтинг:</label>
-                <div className="review-form-stars">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span
-                      key={star}
-                      className={`review-form-star ${
-                        star <= (hoverRating || rating) ? "filled" : ""
-                      }`}
-                      onClick={() => handleStarClick(star)}
-                      onMouseEnter={() => handleStarHover(star)}
-                      onMouseLeave={handleStarLeave}
-                    >
-                      ★
-                    </span>
-                  ))}
+                <div className="review-form-stars-form">
+                  <label>Рейтинг:</label>
+                  <div className="review-form-stars">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        className={`review-form-star ${
+                          star <= (hoverRating || rating) ? "filled" : ""
+                        }`}
+                        onClick={() => handleStarClick(star)}
+                        onMouseEnter={() => handleStarHover(star)}
+                        onMouseLeave={handleStarLeave}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="review-form-group">

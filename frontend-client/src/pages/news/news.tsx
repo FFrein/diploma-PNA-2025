@@ -1,4 +1,4 @@
-import NewsList from "../components/news/NewsList";
+import NewsList from "../../components/news/NewsList";
 import "./news.css";
 
 export const News = () => {

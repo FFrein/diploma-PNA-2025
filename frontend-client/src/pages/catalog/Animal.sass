@@ -1,0 +1,194 @@
+.animal-page-container
+  max-width: 1200px
+  margin: 0 auto
+  padding: 40px
+
+.animal-page-loader
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 200px
+
+.animal-page-animate-spin
+  animation: spin 1s linear infinite
+  width: 40px
+  height: 40px
+  color: #333
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+.animal-page-error
+  text-align: center
+  color: #333
+  font-size: 18px
+  padding: 20px
+
+.animal-page-card
+  background-color: #fff
+  border-radius: 15px
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05)
+  padding: 30px
+
+.animal-page-name
+  font-size: 32px
+  font-weight: bold
+  color: #2c3e50
+  text-align: start
+  margin-bottom: 30px
+
+.animal-page-details
+  display: flex
+  gap: 40px
+  flex-wrap: wrap
+
+.animal-page-left-column
+  flex: 1
+  min-width: 300px
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+.animal-page-image-slider
+  position: relative
+  width: 100%
+  max-width: 400px
+  margin: 0 auto
+
+.animal-page-image
+  width: 100%
+  height: 300px
+  object-fit: cover
+  border-radius: 10px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+
+.animal-page-slider-btn
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  color: #fff
+  border: none
+  border-radius: 50%
+  cursor: pointer
+  transition: background-color 0.3s
+
+  &.prev
+    left: 10px
+
+  &.next
+    right: 10px
+
+  &:hover
+    background: #333
+
+  &:disabled
+    background: #ccc
+    cursor: not-allowed
+
+.animal-page-image-counter
+  position: absolute
+  bottom: 10px
+  left: 50%
+  transform: translateX(-50%)
+  background: rgba(0, 0, 0, 0.6)
+  color: #fff
+  padding: 4px 10px
+  border-radius: 10px
+  font-size: 12px
+
+.animal-page-description
+  padding: 15px
+  border-radius: 8px
+
+  p
+    font-size: 16px
+    color: #7f8c8d
+    line-height: 1.5
+
+.animal-page-right-column
+  flex: 1
+  min-width: 300px
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+.animal-page-info
+  border: 1px solid #D6D6D6
+  background: #fff
+  padding: 0 20px 0 20px
+  border-radius: 8px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05)
+
+  &-list
+    font-size: 16px
+    color: #34495e
+    text-align: start
+
+    p
+      margin-bottom: 12px
+
+      strong
+        color: #2c3e50
+
+.animal-page-vaccinations
+  background: #fff
+  padding: 20px
+  border-radius: 8px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05)
+  border: 1px solid #D6D6D6
+
+.animal-page-vaccination-list
+  list-style: disc
+  padding-left: 20px
+  font-size: 16px
+  color: #34495e
+
+  li
+    margin-bottom: 8px
+
+.animal-page-section-title
+  font-size: 20px
+  font-weight: bold
+  color: #333
+  margin: 0
+  margin-bottom: 15px
+
+.swiper-button-prev,
+.swiper-button-next
+  z-index: 10
+  position: absolute
+  top:50%
+  color: #fff
+  background: rgba(0, 0, 0, 0.4)
+  border-radius: 50%
+  width: 32px
+  height: 32px
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 16px
+  transition: background 0.3s
+  
+.swiper-button-prev
+  left:0
+.swiper-button-next
+  right:0
+
+  &:hover
+    background: rgba(0, 0, 0, 0.6)
+
+.swiper-button-prev::before,
+.swiper-button-next::before
+  content: ""
+  display: inline-block
+  width: 8px
+  height: 8px
+  border-top: 2px solid #fff
+  border-right: 2px solid #fff
+  transform: rotate(-135deg)
+
+.swiper-button-next::before
+  transform: rotate(45deg)

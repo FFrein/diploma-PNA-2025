@@ -116,6 +116,13 @@
   gap: 5px;
 }
 
+.review-form-stars-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .review-form-star {
   font-size: 24px;
   color: #ccc; /* Серый цвет для незакрашенных звёзд */

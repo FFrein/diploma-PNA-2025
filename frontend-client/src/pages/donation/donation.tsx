@@ -1,8 +1,8 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import "./DonationPage.sass";
-import { DonationForm } from "../components/donation/DonationForm";
-import TransactionsList from "../components/donation/Transactions";
+import { DonationForm } from "../../components/donation/DonationForm";
+import TransactionsList from "../../components/donation/Transactions";
 
 // Инициализация Stripe с тестовым ключом
 const stripePromise = loadStripe(

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { NewsService } from "../api/services/all.services";
-import "./NewsDetail.css";
+import { NewsService } from "../../../api/services/all.services";
+import "./NewsDetail.sass";
 
 export const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Получаем ID из URL
@@ -31,7 +31,7 @@ export const NewsDetail: React.FC = () => {
   }, [id]);
 
   return (
-    <div className="news-detail-container">
+    <div className="news-detail-container container">
       {isLoading ? (
         <p>Загрузка...</p>
       ) : error ? (

@@ -1,6 +1,7 @@
 "use client";
 import ServiceCard, { ServiceCardProps } from "./serviceCard/ServiceCard";
 import accordion from "./Accordion.module.sass";
+import { TooltipWrapper } from "../tooltip/TooltipWrapper";
 
 interface AccordionProps {}
 
@@ -34,19 +35,20 @@ const Accordion: React.FC<AccordionProps> = ({}: AccordionProps) => {
         <div>
           {cards.map((card, index) => {
             return (
-              <div
-                key={index}
-                style={{
-                  zIndex: index,
-                  margin: cards.length === index + 1 ? "" : "0 0 -24px 0",
-                }}
-              >
-                <ServiceCard
-                  number={index.toString()}
-                  question={card.question}
-                  answer={card.answer}
-                />
-              </div>
+              <TooltipWrapper eventType={"Подробнее"} key={index}>
+                <div
+                  style={{
+                    zIndex: index,
+                    margin: cards.length === index + 1 ? "" : "0 0 -24px 0",
+                  }}
+                >
+                  <ServiceCard
+                    number={index.toString()}
+                    question={card.question}
+                    answer={card.answer}
+                  />
+                </div>
+              </TooltipWrapper>
             );
           })}
         </div>

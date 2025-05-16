@@ -5,7 +5,7 @@
 .catalog-animals-bg {
   bottom: 0;
   left: -200px;
-  width: 1600px;
+  width: 130%;
   position: absolute;
   z-index: -10;
 }

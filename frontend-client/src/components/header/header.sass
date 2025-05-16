@@ -1,56 +1,76 @@
-//Header
-
-.header 
+.header
   box-sizing: border-box
   max-width: 1280px
-  margin: 10px auto 10px auto
+  margin: 10px auto
   font-family: var(--font-header-family)
   padding: 10px 40px
   border-bottom: 2px solid #e0e0e0
   background-color: #FFFFFF
-  border-radius:60px
+  border-radius: 60px
 
-.header-nav  
-  max-width: 1280px
-  margin: auto
+.header-nav
   display: flex
   justify-content: space-between
   align-items: center
+  position: relative
 
+.header-nav img
+  width: 60px
+  height: 60px
 
-.header-nav a 
+.burger
+  display: none
+  background: none
+  font-size: 26px
+  border: none
+  cursor: pointer
+  margin-left: auto
+
+.header-nav-center
+  display: flex
+  gap: 20px
+  align-items: center
+
+.header-nav a
   text-decoration: none
-  padding: 10px 10px
+  padding: 10px
   border-radius: 8px
   transition: background-color 0.3s, color 0.3s
   font-weight: 500
   font-size: 14px
 
-.header-nav a:hover 
-  color: #b8b8b8
-
-.header-nav img 
-  width: 60px
-  height: 60px
-
-
-.header-nav-center 
-  display: flex
-  gap: 20px
-  align-items: center
-
-
-.linkBtn 
+.linkBtn
   text-decoration: none
   font-size: 12px
   color: #333
-  padding: 10px 10px
+  padding: 10px
   border-radius: 8px
   transition: background-color 0.3s, color 0.3s
+
+.linkBtn:hover
+  color: #979797
 
 .authBtn
   background-color: var(--color-main)
   color: var(--color-input-dark)
 
-.linkBtn:hover 
-  color: #979797
+@media (max-width: 1280px)
+  .burger
+    display: block
+    color: black
+
+  .header-nav-center
+    display: none
+    position: absolute
+    top: 70px
+    right: 20px
+    background-color: #fff
+    flex-direction: column
+    gap: 10px
+    padding: 20px
+    border: 1px solid #ccc
+    border-radius: 16px
+    z-index: 1000
+
+  .header-nav-center.open
+    display: flex

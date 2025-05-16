@@ -8,7 +8,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 80px;
   /* Добавляем фоновое изображение */
-  background-image: url("/public/memCat.jpg"); /* Укажите путь к вашему изображению */
+  background-image: url("/memCat.jpg"); /* Укажите путь к вашему изображению */
   background-position: right center; /* Изображение справа, центрировано по вертикали */
   background-repeat: no-repeat; /* Не повторять изображение */
   background-size: 600px auto; /* Установите размер изображения (настройте под ваши нужды) */

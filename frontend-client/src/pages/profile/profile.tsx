@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../store/context";
+import { Context } from "../../store/context";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../api/services/auth.service";
+import AuthService from "../../api/services/auth.service";
 import "./Profile.css";
-import { ReviewForm } from "../components/review/reviewForm";
+import { ReviewForm } from "../../components/review/reviewForm";
 
 export const Profile = () => {
   const { store } = useContext(Context);
@@ -32,6 +32,8 @@ export const Profile = () => {
       });
       setError(null);
     } catch (err: any) {
+      store.setAuth(false);
+      localStorage.clear();
       setError("Ошибка при получении данных: " + err.message);
     }
   };
@@ -84,7 +86,7 @@ export const Profile = () => {
 
   return (
     <div className="profile-page">
-      <h2>Профиль</h2>
+      <h2 className="profile-page-title">Профиль</h2>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
       {user ? (

@@ -1,4 +1,4 @@
-import { AnimalsCatalog } from "../components/catalog/animalsCatalog";
+import { AnimalsCatalog } from "../../components/catalog/animalsCatalog";
 import "./catalog.css";
 
 export const Catalog = () => {
