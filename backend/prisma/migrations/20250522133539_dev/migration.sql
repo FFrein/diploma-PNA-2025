@@ -5,9 +5,6 @@ CREATE TYPE "role" AS ENUM ('admin', 'support', 'user', 'guest');
 CREATE TYPE "health" AS ENUM ('healthy', 'temporaryIllness', 'chronic');
 
 -- CreateEnum
-CREATE TYPE "goodsType" AS ENUM ('food', 'toilet', 'item', 'medicines');
-
--- CreateEnum
 CREATE TYPE "animalType" AS ENUM ('cat', 'dog');
 
 -- CreateEnum
@@ -19,12 +16,29 @@ CREATE TYPE "color" AS ENUM ('brown', 'black', 'grey', 'white', 'ginger');
 -- CreateEnum
 CREATE TYPE "size" AS ENUM ('small', 'medium', 'large');
 
+-- CreateEnum
+CREATE TYPE "gender" AS ENUM ('male', 'female');
+
+-- CreateEnum
+CREATE TYPE "status" AS ENUM ('new', 'saled', 'dead');
+
+-- CreateTable
+CREATE TABLE "TelegramUser" (
+    "id" SERIAL NOT NULL,
+    "chatId" TEXT NOT NULL,
+    "animalNotified" BOOLEAN NOT NULL DEFAULT false,
+    "newsNotified" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "userId" INTEGER,
+
+    CONSTRAINT "TelegramUser_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "role" "role" NOT NULL,
     "FIO" TEXT NOT NULL,
-    "login" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
@@ -47,6 +61,8 @@ CREATE TABLE "Animal" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "animalType" "animalType" NOT NULL,
+    "gender" "gender" NOT NULL,
+    "status" "status" NOT NULL,
     "health" "health" NOT NULL,
     "diseasesDescription" TEXT,
     "age" INTEGER NOT NULL,
@@ -62,10 +78,20 @@ CREATE TABLE "Animal" (
 );
 
 -- CreateTable
+CREATE TABLE "AnimalImage" (
+    "id" SERIAL NOT NULL,
+    "imageUrl" TEXT NOT NULL,
+    "animalId" INTEGER NOT NULL,
+
+    CONSTRAINT "AnimalImage_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Vaccination" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "animalType" "animalType" NOT NULL,
 
     CONSTRAINT "Vaccination_pkey" PRIMARY KEY ("id")
 );
@@ -90,28 +116,44 @@ CREATE TABLE "Review" (
 );
 
 -- CreateTable
-CREATE TABLE "Goods" (
+CREATE TABLE "News" (
     "id" SERIAL NOT NULL,
-    "type" "goodsType" NOT NULL,
-    "name" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
+    "iamge" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
 
-    CONSTRAINT "Goods_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "News_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "TelegramNotification" (
-    "userId" INTEGER NOT NULL,
+CREATE TABLE "Transactions" (
+    "id" SERIAL NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "date" TEXT NOT NULL,
 
-    CONSTRAINT "TelegramNotification_pkey" PRIMARY KEY ("userId")
+    CONSTRAINT "Transactions_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "TelegramUser_chatId_key" ON "TelegramUser"("chatId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "TelegramUser_userId_key" ON "TelegramUser"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Review_userId_key" ON "Review"("userId");
+
+-- AddForeignKey
+ALTER TABLE "TelegramUser" ADD CONSTRAINT "TelegramUser_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
 -- AddForeignKey
 ALTER TABLE "Animal" ADD CONSTRAINT "Animal_animalBreedId_fkey" FOREIGN KEY ("animalBreedId") REFERENCES "AnimalBreed"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AnimalImage" ADD CONSTRAINT "AnimalImage_animalId_fkey" FOREIGN KEY ("animalId") REFERENCES "Animal"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "VaccinationAnimal" ADD CONSTRAINT "VaccinationAnimal_animalId_fkey" FOREIGN KEY ("animalId") REFERENCES "Animal"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -121,6 +163,3 @@ ALTER TABLE "VaccinationAnimal" ADD CONSTRAINT "VaccinationAnimal_vaccinationId_
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "TelegramNotification" ADD CONSTRAINT "TelegramNotification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 //import { Prisma } from '@prisma/client';
 
@@ -10,21 +11,21 @@ export class VactinationService {
     return this.prisma.vaccination.findMany({});
   }
 
-  /*
   create(data: Prisma.VaccinationCreateInput) {
-    return this.prisma.animal.create({ data });
+    return this.prisma.vaccination.create({ data });
   }
 
+  remove(id: number) {
+    return this.prisma.vaccination.delete({ where: { id: id } });
+  }
+
+  /*
   findOne(id: number) {
     return `This action returns a #${id} vactination`;
   }
 
   update(id: number, data: Prisma.VaccinationUpdateInput) {
     return `This action updates a #${id} vactination`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} vactination`;
   }
   */
 }
