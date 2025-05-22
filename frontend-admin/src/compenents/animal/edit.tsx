@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  AnimalsImagesService,
-  AnimalsService,
-  VaccinationAnimalService,
-  VaccinationService,
-  animalBreedService,
-} from "../../api/services/all.services";
+
 import "./AnimalEdit.css";
+import { animalBreedService } from "../../api/services/animalBreed.service";
+import { AnimalsService } from "../../api/services/animal.service";
+import { AnimalsImagesService } from "../../api/services/animalsImages.service";
+import { VaccinationAnimalService } from "../../api/services/vaccinationAnimal.service";
+import { VaccinationService } from "../../api/services/vactination.service";
 
 export const AnimalEdit: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -9,6 +9,7 @@ import { Login } from "./pages/login";
 import { NavigationMenu } from "./compenents/navigation";
 import { Rewievs } from "./pages/rewievs";
 import { News } from "./pages/news";
+import { Vactination } from "./pages/vactination";
 
 function App() {
   const { store } = useContext(Context);
@@ -38,6 +39,10 @@ function App() {
                   <Route path={"/animals/*"} element={<Animals />}></Route>
                   <Route path={"/rewievs/*"} element={<Rewievs />}></Route>
                   <Route path={"/news/*"} element={<News />}></Route>
+                  <Route
+                    path={"/vactination/*"}
+                    element={<Vactination />}
+                  ></Route>
                   <Route path={"*"} element={<Animals />}></Route>
                 </>
               )}

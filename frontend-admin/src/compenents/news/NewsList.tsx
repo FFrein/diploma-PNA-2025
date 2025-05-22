@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./NewsList.css";
 import { Link } from "react-router-dom";
-import { NewsService } from "../../api/services/all.services";
 import Paginator from "../paginator";
+import { NewsService } from "../../api/services/news.service";
 
 export const NewsList: React.FC = () => {
   const [news, setNews] = useState<any[]>([]);

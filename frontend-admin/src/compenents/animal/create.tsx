@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AnimalCreate.css";
-import {
-  animalBreedService,
-  AnimalsService,
-} from "../../api/services/all.services";
+import { AnimalsService } from "../../api/services/animal.service";
+import { animalBreedService } from "../../api/services/animalBreed.service";
 
 export const AnimalCreate: React.FC = () => {
   const [name, setName] = useState<string>("");

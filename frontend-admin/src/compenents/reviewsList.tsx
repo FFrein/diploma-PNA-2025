@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ReviewsService } from "../api/services/all.services";
 import Paginator from "./paginator.tsx";
 import "./ReviewsList.css";
+import { ReviewsService } from "../api/services/reviews.service.ts";
 
 export const ReviewsList: React.FC = () => {
   const [reviews, setReviews] = useState<any[]>([]);

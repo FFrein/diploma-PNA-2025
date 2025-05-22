@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./NewsForm.css";
-import { NewsService } from "../../api/services/all.services";
+import { NewsService } from "../../api/services/news.service";
 
 export const NewsEdit: React.FC = () => {
   const { id } = useParams<{ id: string }>();

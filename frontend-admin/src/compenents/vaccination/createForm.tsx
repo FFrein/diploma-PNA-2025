@@ -1,28 +1,14 @@
 import React, { useState } from "react";
-import "./NewsForm.css";
-import { NewsService } from "../../api/services/news.service";
+import "./styles.css";
+import { VaccinationService } from "../../api/services/vactination.service";
 
-export const NewsCreate: React.FC = () => {
+export const VaccinationCreate: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [file, setFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedAnimalType, setSelectedAnimalType] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-
-  // Обработка загрузки изображения
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
-      setFile(selectedFile);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
-  };
 
   // Обработка отправки формы
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,12 +18,14 @@ export const NewsCreate: React.FC = () => {
     setSuccess(null);
 
     try {
-      await NewsService.create({ title, description, file: file || undefined });
-      setSuccess("Новость успешно создана!");
+      await VaccinationService.create({
+        name: title,
+        description,
+        animalType: selectedAnimalType,
+      });
+      setSuccess("Прививка успешно создана!");
       setTitle("");
       setDescription("");
-      setFile(null);
-      setImagePreview(null);
     } catch (err: any) {
       setError("Ошибка при создании новости: " + err.message);
     } finally {
@@ -47,10 +35,10 @@ export const NewsCreate: React.FC = () => {
 
   return (
     <div className="news-form-container">
-      <h2>Создать новость</h2>
+      <h2>Создание прививки</h2>
       <form onSubmit={handleSubmit} className="news-form">
         <div className="form-group">
-          <label>Заголовок:</label>
+          <label>Название:</label>
           <input
             type="text"
             value={title}
@@ -70,19 +58,18 @@ export const NewsCreate: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label>Изображение:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
+          <label>Тип животного:</label>
+          <select
+            value={selectedAnimalType || ""}
+            onChange={(e) => setSelectedAnimalType(e.target.value)}
             className="form-input"
-          />
-          {imagePreview && (
-            <div className="image-preview">
-              <img src={imagePreview} alt="Предпросмотр" />
-            </div>
-          )}
+          >
+            <option value="">Тип животного</option>
+            <option value="cat">Кот</option>
+            <option value="dog">Собака</option>
+          </select>
         </div>
+
         <button type="submit" className="submit-button" disabled={isLoading}>
           {isLoading ? "Создание..." : "Создать"}
         </button>
@@ -93,4 +80,4 @@ export const NewsCreate: React.FC = () => {
   );
 };
 
-export default NewsCreate;
+export default VaccinationCreate;
