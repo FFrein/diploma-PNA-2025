@@ -142,7 +142,7 @@ model Review {
   user        User      @relation("UserReview", fields: [userId], references: [id])
   rating      Int
   description String
-  isVisible   Boolean
+  isVisible   Boolean @default(false)
 }
 
 model News {

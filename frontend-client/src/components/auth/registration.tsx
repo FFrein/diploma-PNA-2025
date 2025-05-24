@@ -44,14 +44,18 @@ export const Registration = () => {
           <input
             placeholder="Email (name@mail.ru)"
             value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, email: e.target.value.trim().slice(0, 50) })
+            }
             className="registration-input"
           />
           <input
             placeholder="Пароль"
             type="password"
             value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, password: e.target.value.trim().slice(0, 50) })
+            }
             className="registration-input"
           />
           {error && <p className="registration-error">{error}</p>}{" "}

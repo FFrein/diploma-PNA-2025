@@ -14,7 +14,7 @@ if (Number(process.env.TELEGRAM_BOT_ACTIVE) === 1) {
   const { Telegraf } = require('telegraf');
   const { PrismaClient } = require('@prisma/client');
 
-  const prisma = new PrismaClient();
+  prisma = new PrismaClient();
 
   bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 
@@ -114,6 +114,7 @@ if (Number(process.env.TELEGRAM_BOT_ACTIVE) === 1) {
     const chatId = ctx.chat.id.toString();
 
     try {
+      console.log(prisma);
       const user = await prisma.telegramUser.update({
         where: { chatId: chatId },
         data: { newsNotified: true },

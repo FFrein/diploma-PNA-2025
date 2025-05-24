@@ -81,8 +81,14 @@ export const NewsList: React.FC = () => {
                       className="news-image"
                     />
                   )}
-                  <h3 className="news-title">{item.title}</h3>
-                  <p className="news-description">{item.description}</p>
+                  <h3 className="news-title">
+                    {item.title.length > 10
+                      ? item.title.slice(0, 10).concat("...")
+                      : item.title}
+                  </h3>
+                  <p className="news-description">
+                    {item.description.slice(0, 70)}
+                  </p>
                 </div>
               </Link>
             ))}

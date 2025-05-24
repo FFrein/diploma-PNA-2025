@@ -16,6 +16,7 @@
   color: #333;
   margin: 0;
   text-align: center;
+  word-break: break-word;
 }
 
 .news-detail-image {
@@ -31,6 +32,7 @@
   color: #555;
   line-height: 1.6;
   margin: 0;
+  word-break: break-word;
 }
 
 .news-detail-error {

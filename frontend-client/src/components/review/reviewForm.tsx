@@ -95,10 +95,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ userId }) => {
     <div className="review-form-container">
       {isLoading ? (
         <p>Загрузка...</p>
-      ) : error ? (
-        <div className="review-form-error">{error}</div>
       ) : (
         <>
+          {error && <div className="review-form-error">{error}</div>}
+
           {success && <div className="review-form-success">{success}</div>}
           {existingReview && !isEditing ? (
             <div className="review-form-existing">

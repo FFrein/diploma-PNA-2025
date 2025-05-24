@@ -7,7 +7,7 @@ export const ReviewsList: React.FC = () => {
   const [reviews, setReviews] = useState<any[]>([]);
   const [totalReviews, setTotalReviews] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize] = useState<number>(2); // Количество отзывов на странице
+  const [pageSize] = useState<number>(5); // Количество отзывов на странице
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 

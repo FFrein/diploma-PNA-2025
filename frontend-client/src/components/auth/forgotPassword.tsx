@@ -26,7 +26,7 @@ const ForgotPassword = () => {
             type="email"
             placeholder="Введите ваш email (@mail.ru)"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.trim().slice(0, 50))}
             className="forgot-password-input"
             required
           />
