@@ -31,6 +31,7 @@ export class UsersController {
   @UseGuards(AuthGuard)
   async update(@Request() req, @Body() updateUserDto: UpdateUserDto) {
     const data: UpdateUserDto = {};
+    console.log(updateUserDto);
     if (updateUserDto.FIO) data.FIO = updateUserDto.FIO;
     if (updateUserDto.phone) data.phone = updateUserDto.phone;
     if (updateUserDto.password) {
@@ -40,7 +41,9 @@ export class UsersController {
       );
     }
 
-    const result = await this.usersService.update(req.user.id, {
+    console.log(req.user);
+
+    const result = await this.usersService.update(req.user.sub, {
       ...data,
     });
 
